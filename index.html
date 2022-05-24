@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Pass Library</title>
+  <link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-logo">
+        <span class="site-title">All Pass Library</span>
+      </div>
+      <div class="header-search">
+        <button class="button-menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 385 385">
+            <path
+              d="M12 120.3h361a12 12 0 000-24H12a12 12 0 000 24zM373 180.5H12a12 12 0 000 24h361a12 12 0 000-24zM373 264.7H132.2a12 12 0 000 24H373a12 12 0 000-24z" />
+          </svg></button>
+      </div>
+    </div>
+    <div class="main">
+      <div class="sidebar">
+        <ul id="allpass_lib">
+          <li><label>a = </label><input type="text" id="NewAllPassValue"></li><button class="mybutton"
+            onclick="addNew()" class="btn btn-primary">Add</button>
+          <li><a href="#" onclick="showZplaneForAllPass('2 + 2i')" ondblclick="addNewAllPass('2 + 2i')"><i
+                class="lni lni-text-format"></i><span>a = 2 + 2j</span></a>
+            <input type="checkbox" onclick="addOrRemove(this, '2 + 2i')">
+          </li>
+          <li><a href="#" onclick="showZplaneForAllPass('2 - 2i')" ondblclick="addNewAllPass('2 - 2i')"><i
+                class="lni lni-text-format"></i><span>a = 2 - 2j</span></a>
+            <input type="checkbox" onclick="addOrRemove(this, '2 - 2i')">
+          </li>
+          <li><a href="#" onclick="showZplaneForAllPass('1 + 2i')" ondblclick="addNewAllPass('1 + 2i')"><i
+                class="lni lni-text-format"></i><span>a = 1 + 2j</span></a>
+            <input type="checkbox" onclick="addOrRemove(this, '1 + 2i')">
+          </li>
+          <li><a href="#" onclick="showZplaneForAllPass('2 + 1i')" ondblclick="addNewAllPass('2 + 1i')"><i
+                class="lni lni-text-format"></i><span>a = 2 + 1j</span></a>
+            <input type="checkbox" onclick="addOrRemove(this, '2 + 1i')">
+          </li>
+        </ul>
+      </div>
+      <div style="display: flex;flex-direction: column;">
+        <div id="design_responses" style="display: flex;">
+          <div id="chart1_cont">
+            <input type="file" id="csvFileInput" style="padding-bottom: 15px;">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <p style="position:relative; left:260px;">Value: <span id="demo"></span></p>
+
+            <div id="chart" style="width:900px"></div>
+          </div>
+          <div>
+            <div id="chart2" style="width:900px"></div>
+          </div>
+
+        </div>
+        <h1>Design Filter</h1>
+        <div class="page-content">
+          <div>
+            <canvas id="zplane_polezero2" width=300 height=300></canvas>
+
+            <div id="zeros"></div>
+            <div id="poles"></div>
+            <button class="mybutton" onclick="add_a_pole()">Add a Pole</button>
+            <button class="mybutton" onclick="add_a_zero()">Add a Zero</button>
+            <button class="mybutton" onclick="clear_all()">Clear All</button><br>
+            <input type="checkbox" id="conjugate" onclick="setZplane(poles, zeros)">
+            <label style="font-weight: 600;">Add Conjugates</label>
+            <input type="checkbox" id="allPassEffect" onclick="setZplane(poles, zeros)" style="margin-left: 55px;">
+            <label style="font-weight: 600;"> with all Pass filters</label>
+            <p class="info"> Double click a point to remove it</p>
+          </div>
+          <div>
+            <div>
+              <label style="font-weight: 600;"> Mangitude Response</label>
+              <div id="mag_response" style="width:450px;height:225px;"></div>
+            </div>
+            <div>
+              <label style="font-weight: 600;"> Phase Response</label>
+              <div id="phase_response" style="width:450px;height:225px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <h1>Desing All Pass Filter</h1>
+        <div id="allpass">
+          <div>
+            <canvas id="allpass_zplane_polezero2" width=300 height=300></canvas>
+          </div>
+          <div>
+            <div id="allpass_phase_response" style="width:600px;height:300px;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.2.0/papaparse.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.8.3.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://flotr.googlecode.com/svn-history/r319/branches/flotr2/flotr/flotr2/flotr2.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
